@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class CubeControlScript : MonoBehaviour
 {
+    Rigidbody myRB;
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3 (0, 7, 0);
+      myRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -16,7 +17,18 @@ public class CubeControlScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) )
         {
-            transform.position += Vector3.forward * Time.deltaTime;
+
+            myRB.AddForce(transform.forward);
+
+          //  transform.position +=transform.forward * Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            myRB.AddExplosionForce(1000,transform.position + Vector3.down,5);
+
+            //  transform.position +=transform.forward * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.A))
