@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class bearControl : MonoBehaviour
 {
+    public GameObject snowballCloneTemplate;
+
     float currentSpeed, walkingSpeed = 2, runningSpeed = 4;
     private float turningSpeed = 180;
     Animator myAnimator;
@@ -41,5 +43,14 @@ public class bearControl : MonoBehaviour
             transform.Rotate(Vector3.up, -turningSpeed * Time.deltaTime);
         }
         
+
+        if (Input.GetMouseButtonDown(0))
+        {
+           GameObject newGO = Instantiate(snowballCloneTemplate);
+
+           SnowControlScript mySnowball = newGO.GetComponent<SnowControlScript>();
+
+            mySnowball.ImThrowingYou(this);
+        }
     }
 }
