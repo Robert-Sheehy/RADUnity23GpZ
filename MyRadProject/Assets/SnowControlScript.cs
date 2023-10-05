@@ -20,6 +20,18 @@ public class SnowControlScript : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("Ouch");
+
+        DealWithHits thingIHit = collision.gameObject.GetComponent<DealWithHits>();
+        if (thingIHit != null)
+        {
+            thingIHit.IHitYou();
+        }
+
+    }
+
     internal void ImThrowingYou(bearControl bearControl)
     {
        transform.position = bearControl.transform.position + 2* Vector3.up + 3 * bearControl.transform.forward;
